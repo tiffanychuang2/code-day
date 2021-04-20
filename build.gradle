@@ -1,7 +1,6 @@
 plugins {
 	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'org.asciidoctor.convert' version '1.5.8'
 	id 'java'
 }
 
@@ -19,16 +18,9 @@ repositories {
 	mavenCentral()
 }
 
-ext {
-	set('snippetsDir', file("build/generated-snippets"))
-	set('springCloudVersion', "2020.0.2")
-}
-
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-data-ldap'
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
@@ -36,9 +28,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
-	implementation 'org.liquibase:liquibase-core'
-	implementation 'org.springframework.cloud:spring-cloud-config-server'
-	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.session:spring-session-jdbc'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	compileOnly 'org.projectlombok:lombok'
@@ -46,22 +35,9 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
-}
-
 test {
-	outputs.dir snippetsDir
 	useJUnitPlatform()
-}
-
-asciidoctor {
-	inputs.dir snippetsDir
-	dependsOn test
 }

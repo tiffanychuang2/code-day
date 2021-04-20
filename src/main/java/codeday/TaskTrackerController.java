@@ -27,7 +27,7 @@ public class TaskTrackerController {
 	@RequestMapping("/home")
 	public String getAllTasks(Model model) {
 		model.addAttribute(model);
-		return "home";
+		return "index";
 	}
 
 }
