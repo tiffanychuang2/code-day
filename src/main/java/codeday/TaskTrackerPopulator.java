@@ -2,10 +2,21 @@ package codeday;
 
 import javax.annotation.Resource;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import codeday.models.Customers;
+import codeday.models.Projects;
+import codeday.models.TaskLogs;
+import codeday.models.Tasks;
+import codeday.repositories.CustomersRepository;
+import codeday.repositories.ProjectsRepository;
+import codeday.repositories.TaskLogsRepository;
+import codeday.repositories.TasksRepository;
+import codeday.repositories.UsersRepository;
+
 @Component
-public class TaskTrackerPopulator {
+public class TaskTrackerPopulator implements CommandLineRunner {
 	@Resource
 	CustomersRepository customersRepo;
 	
@@ -21,36 +32,47 @@ public class TaskTrackerPopulator {
 	@Resource
 	UsersRepository usersRepo;
 	
+	@Override
 	public void run(String... args) throws Exception {
 		
-		Customers chandlerBing = new Customers(1, "Chandler Bing");
+		Customers chandlerBing = new Customers("Chandler Bing");
 		customersRepo.save(chandlerBing);
-		Customers lavenderGooms = new Customers(2, "Lavender Gooms");
+		Customers lavenderGooms = new Customers("Lavender Gooms");
 		customersRepo.save(lavenderGooms);
-		Customers barneyStinson = new Customers(2, "Barney Stinson");
+		Customers barneyStinson = new Customers("Barney Stinson");
 		customersRepo.save(barneyStinson);
 		
-		Projects seize = new Projects(1, 2, "S.E.I.Z.E.");
+		Projects seize = new Projects(2, "S.E.I.Z.E.");
 		projectsRepo.save(seize);
-		Projects please = new Projects(2, 3, "P.L.E.A.S.E.");
+		Projects please = new Projects(3, "P.L.E.A.S.E.");
 		projectsRepo.save(please);
-		Projects wenus = new Projects(3, 1, "WENUS");
+		Projects wenus = new Projects(1, "W.E.N.U.S.");
 		projectsRepo.save(wenus);
 		
-		Tasks taskSeize = new Tasks(1, "S is for seize.", 1);
+		Tasks taskSeize = new Tasks("S is for seize.", 4);
 		tasksRepo.save(taskSeize);
-		Tasks taskEggs = new Tasks(2, "E is for eggs.", 1);
+		Tasks taskEggs = new Tasks("E is for eggs.", 4);
 		tasksRepo.save(taskEggs);
-		Tasks taskIdk = new Tasks(3, "I is for I don't know.", 1);
+		Tasks taskIdk = new Tasks("I is for I don't know.", 4);
 		tasksRepo.save(taskIdk);
-		Tasks taskZebra = new Tasks(4, "Z is for zebra.", 1);
+		Tasks taskZebra = new Tasks("Z is for zebra.", 4);
 		tasksRepo.save(taskZebra);
-		Tasks taskEighties = new Tasks(5, "E is for eighties.", 1);
+		Tasks taskEighties = new Tasks("E is for eighties.", 4);
 		tasksRepo.save(taskEighties);
-		Tasks taskPlease = new Tasks(6, "Provide Legal Exculpation and Sign Everything.", 2);
+		Tasks taskPlease = new Tasks("Provide Legal Exculpation and Sign Everything.", 5);
 		tasksRepo.save(taskPlease);
-		Tasks taskWenus = new Tasks(7, "Weekly Estimated Net Usage Statistics.", 3);
+		Tasks taskWenus = new Tasks("Weekly Estimated Net Usage Statistics.", 6);
 		tasksRepo.save(taskWenus);
+		
+		TaskLogs one = new TaskLogs(7, 18, 30);
+		taskLogsRepo.save(one);
+		TaskLogs two = new TaskLogs(8, 19, 45);
+		taskLogsRepo.save(two);
+		TaskLogs three = new TaskLogs(12, 20, 65);
+		taskLogsRepo.save(three);
+		TaskLogs four = new TaskLogs(13, 21, 80);
+		taskLogsRepo.save(four);
+		
 		
 		
 	}

@@ -1,4 +1,4 @@
-package codeday;
+package codeday.models;
 
 import java.util.Set;
 
@@ -26,8 +26,7 @@ public class Tasks {
 		
 	}
 	
-	public Tasks(int id, String description, int projectId) {
-		this.id = id;
+	public Tasks(String description, int projectId) {
 		this.description = description;
 		this.projectId = projectId;
 	}
@@ -58,7 +57,7 @@ public class Tasks {
 	
 	@Override
 	public String toString() {
-		return id + " " + description + " " + projectId;
+		return description + " " + projectId;
 	}
 
 }

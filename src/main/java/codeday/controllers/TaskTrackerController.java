@@ -1,6 +1,4 @@
-package codeday;
-
-import java.util.Set;
+package codeday.controllers;
 
 import javax.annotation.Resource;
 
@@ -8,6 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import codeday.models.Customers;
+import codeday.repositories.CustomersRepository;
+import codeday.repositories.ProjectsRepository;
+import codeday.repositories.TaskLogsRepository;
+import codeday.repositories.TasksRepository;
+import codeday.repositories.UsersRepository;
 
 @Controller
 public class TaskTrackerController {
@@ -64,7 +69,7 @@ public class TaskTrackerController {
 			Customers newCustomer = customersRepo.findByName(name);
 			if (newCustomer == null) {
 				// newGenre = new Genre(genreName, genre, genreImage);
-				newCustomer = new Customers(id, name);
+				newCustomer = new Customers(name);
 				customersRepo.save(newCustomer);
 			}
 //			MovieReview review = reviewRepo.findOne(id);

@@ -27,14 +27,11 @@
                     		<th>id</th>
                     		<th>name</th>
                     	</tr>
-                        <!-- <tr> -->
 						<tr th:each="customer : ${customers}">
 							<td><button>x</button></td>
-                            <!-- <td>id</td>
-                            <td>name</td> -->
-							<td th:text="${customers.id}"></td>
-							<td th:text="${customers.name}"></td>
-						</tr>
+							<td th:text="${customer.id}"></td>
+							<td th:text="${customer.name}"></td>
+                        </tr>
                     </table>
                 
                 </div>

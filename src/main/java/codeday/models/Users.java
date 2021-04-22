@@ -1,4 +1,4 @@
-package codeday;
+package codeday.models;
 
 import java.util.Set;
 

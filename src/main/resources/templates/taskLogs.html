@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="../css/styles.css"/>
@@ -23,6 +23,13 @@
                     		<th>user_id</th>
                     		<th>duration_minutes</th>
                     	</tr>
+                        <tr th:each="taskLog : ${taskLogs}">
+							<td><button>x</button></td>
+							<td th:text="${taskLog.id}"></td>
+							<td th:text="${taskLog.taskId}"></td>
+							<td th:text="${taskLog.userId}"></td>
+							<td th:text="${taskLog.durationMinutes}"></td>
+                        </tr>
                     
                     </table>
                 

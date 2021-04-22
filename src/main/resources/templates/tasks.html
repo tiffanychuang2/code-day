@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="../css/styles.css"/>
@@ -22,6 +22,12 @@
                     		<th>description</th>
                     		<th>project_id</th>
                     	</tr>
+                        <tr th:each="task : ${tasks}">
+							<td><button>x</button></td>
+							<td th:text="${task.id}"></td>
+							<td th:text="${task.description}"></td>
+							<td th:text="${task.project_id}"></td>
+                        </tr>
                     
                     </table>
                 

@@ -1,4 +1,4 @@
-package codeday;
+package codeday.models;
 
 import java.util.Set;
 
@@ -27,12 +27,38 @@ public class TaskLogs {
 		
 	}
 	
-	public TaskLogs(int id, int taskId, int userId, int durationMinutes) {
-		this.id = id;
+	public TaskLogs(int taskId, int userId, int durationMinutes) {
 		this.taskId = taskId;
 		this.userId = userId;
 		this.durationMinutes = durationMinutes;
 	}
+	
+//	@Id
+//	@GeneratedValue
+//	private int id;
+//	private int durationMinutes;
+//	
+//	@ManyToMany(mappedBy = "tasksForTasklogs")
+//	private Set<Tasks> tasklogsForTasks;
+//	
+//	@ManyToMany(mappedBy = "usersForTasklogs")
+//	private Set<Users> tasklogsForUsers;
+//	
+//	@ManyToOne
+//	private Tasks taskId;
+//	
+//	@ManyToOne
+//	private Users userId;
+//	
+//	protected TaskLogs() {
+//		
+//	}
+//	
+//	public TaskLogs(Tasks taskId, Users userId, int durationMinutes) {
+//		this.taskId = taskId;
+//		this.userId = userId;
+//		this.durationMinutes = durationMinutes;
+//	}
 	
 	public int getId() {
 		return id;

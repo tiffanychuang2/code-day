@@ -1,12 +1,16 @@
-package codeday;
+package codeday.repositories;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
+import codeday.models.Projects;
+
 public interface ProjectsRepository extends CrudRepository<Projects, Integer> {
 	
-	List<Projects> findByName(String name);
+	Projects findByName(String name);
+	
+	List<Projects> findAll();
 	
 	Projects findById(int id);
 

@@ -1,4 +1,4 @@
-package codeday;
+package codeday.models;
 
 import java.util.Set;
 
@@ -11,16 +11,12 @@ import javax.persistence.ManyToMany;
 //import javax.persistence.Table;
 
 @Entity
-//@Table
 public class Projects {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-//	@Column
 	private int id;
-//	@Column
 	private int customerId;
-//	@Column
 	private String name;
 	
 	@ManyToMany(mappedBy = "customersForProjects")
@@ -33,8 +29,7 @@ public class Projects {
 		
 	}
 	
-	public Projects(int id, int customerId, String name) {
-		this.id = id;
+	public Projects(int customerId, String name) {
 		this.customerId = customerId;
 		this.name = name;
 	}
@@ -65,7 +60,7 @@ public class Projects {
 	
 	@Override
 	public String toString() {
-		return id + " " + customerId + " " + name;
+		return customerId + " " + name;
 	}
 
 }

@@ -1,3 +1,4 @@
+package codeday.config;
 //package codeday;
 //
 //import org.springframework.context.annotation.Configuration;

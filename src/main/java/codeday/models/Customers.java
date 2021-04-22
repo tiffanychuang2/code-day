@@ -1,24 +1,18 @@
-package codeday;
+package codeday.models;
 
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table
 public class Customers {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column
+	@GeneratedValue
 	private int id;
-	@Column
 	private String name;
 	
 	@ManyToMany
@@ -28,8 +22,7 @@ public class Customers {
 		
 	}
 	
-	public Customers(int id, String name) {
-		this.id = id;
+	public Customers(String name) {
 		this.name = name;
 	}
 	
