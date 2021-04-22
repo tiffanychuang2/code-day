@@ -1,15 +1,21 @@
 package codeday;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table
 public class Customers {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column
 	private int id;
+	@Column
 	private String name;
 	
 	protected Customers() {
@@ -20,13 +26,6 @@ public class Customers {
 		this.id = id;
 		this.name = name;
 	}
-	
-	@Override
-	  public String toString() {
-	    return String.format(
-	        "Customer[id=%d, name='%s']",
-	        id, name);
-	  }
 	
 	public int getId() {
 		return id;
@@ -43,5 +42,17 @@ public class Customers {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Override
+	public String toString() {
+		return id + " " + name;
+	}
+
+//	@Override
+//	  public String toString() {
+//	    return String.format(
+//	        "Customer[id=%d, name='%s']",
+//	        id, name);
+//	  }
 
 }

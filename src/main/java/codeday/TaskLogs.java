@@ -56,5 +56,10 @@ public class TaskLogs {
 	public void setDurationMinutes(int durationMinutes) {
 		this.durationMinutes = durationMinutes;
 	}
+	
+	@Override
+	public String toString() {
+		return id + " " + taskId + " " + userId + " " + durationMinutes;
+	}
 
 }
