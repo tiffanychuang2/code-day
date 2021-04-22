@@ -1,10 +1,13 @@
 package codeday;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +20,9 @@ public class Customers {
 	private int id;
 	@Column
 	private String name;
+	
+	@ManyToMany
+	private Set<Projects> customersForProjects;
 	
 	protected Customers() {
 		

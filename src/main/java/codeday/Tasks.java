@@ -1,8 +1,11 @@
 package codeday;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Tasks {
@@ -12,6 +15,12 @@ public class Tasks {
 	private int id;
 	private String description;
 	private int projectId;
+	
+	@ManyToMany(mappedBy = "projectsForTasks")
+	private Set<Projects> tasksForProjects;
+	
+	@ManyToMany
+	private Set<TaskLogs> tasksForTasklogs;
 	
 	protected Tasks() {
 		

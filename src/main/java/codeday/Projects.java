@@ -1,24 +1,33 @@
 package codeday;
 
-import javax.persistence.Column;
+import java.util.Set;
+
+//import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToMany;
+//import javax.persistence.Table;
 
 @Entity
-@Table
+//@Table
 public class Projects {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column
+//	@Column
 	private int id;
-	@Column
+//	@Column
 	private int customerId;
-	@Column
+//	@Column
 	private String name;
+	
+	@ManyToMany(mappedBy = "customersForProjects")
+	private Set<Customers> projectsForCustomers;
+	
+	@ManyToMany
+	private Set<Tasks> projectsForTasks;
 	
 	protected Projects() {
 		
