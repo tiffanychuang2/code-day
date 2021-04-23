@@ -15,6 +15,7 @@ import codeday.models.Task;
 import codeday.models.TaskLog;
 import codeday.repositories.CustomerRepository;
 import codeday.repositories.ProjectRepository;
+import codeday.repositories.SecureUserRepository;
 import codeday.repositories.TaskLogRepository;
 import codeday.repositories.TaskRepository;
 import codeday.repositories.UserRepository;
@@ -36,6 +37,9 @@ public class TaskTrackerController {
 	
 	@Resource
 	UserRepository userRepo;
+	
+	@Resource
+	SecureUserRepository secureUserRepo;
 	
 //login
 	@RequestMapping("/login")

@@ -7,10 +7,11 @@ import org.springframework.stereotype.Component;
 
 import codeday.models.Customer;
 import codeday.models.Project;
-import codeday.models.TaskLog;
 import codeday.models.Task;
+import codeday.models.TaskLog;
 import codeday.repositories.CustomerRepository;
 import codeday.repositories.ProjectRepository;
+import codeday.repositories.SecureUserRepository;
 import codeday.repositories.TaskLogRepository;
 import codeday.repositories.TaskRepository;
 import codeday.repositories.UserRepository;
@@ -31,6 +32,9 @@ public class TaskTrackerPopulator implements CommandLineRunner {
 	
 	@Resource
 	UserRepository userRepo;
+	
+	@Resource
+	SecureUserRepository secureUserRepo;
 	
 	@Override
 	public void run(String... args) throws Exception {
