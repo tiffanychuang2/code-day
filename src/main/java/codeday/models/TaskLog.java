@@ -1,6 +1,5 @@
 package codeday.models;
 
-import java.sql.Timestamp;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -17,8 +16,8 @@ public class TaskLog {
 	private int taskId;
 	private int userId;
 	private int durationMinutes;
-	public Timestamp startTime;
-	public Timestamp stopTime;
+	public Long startTime;
+	public Long stopTime;
 			
 	@ManyToMany(mappedBy = "tasksForTasklogs")
 	private Set<Task> tasklogsForTasks;
@@ -30,7 +29,7 @@ public class TaskLog {
 		
 	}
 	
-	public TaskLog(int taskId, int userId, int durationMinutes, Timestamp startTime, Timestamp stopTime) {
+	public TaskLog(int taskId, int userId, int durationMinutes, Long startTime, Long stopTime) {
 		this.taskId = taskId;
 		this.userId = userId;
 		this.durationMinutes = durationMinutes;
@@ -54,11 +53,11 @@ public class TaskLog {
 		return durationMinutes;
 	}
 	
-	public Timestamp getStartTime() {
+	public Long getStartTime() {
 		return startTime;
 	}
 	
-	public Timestamp getStopTime() {
+	public Long getStopTime() {
 		return stopTime;
 	}
 	
@@ -78,11 +77,11 @@ public class TaskLog {
 		this.durationMinutes = durationMinutes;
 	}
 	
-	public void setStartTime(Timestamp startTime) {
+	public void setStartTime(Long startTime) {
 		this.startTime = startTime;
 	}
 	
-	public void setStopTime(Timestamp stopTime) {
+	public void setStopTime(Long stopTime) {
 		this.stopTime = stopTime;
 	}
 	

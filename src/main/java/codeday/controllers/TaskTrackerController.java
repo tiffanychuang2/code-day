@@ -149,7 +149,7 @@ public class TaskTrackerController {
 	}
 	
 	@RequestMapping("/add-tasklog")
-	public String addTaskLog(@RequestParam int taskId, int userId, int durationMinutes, Timestamp startTime, Timestamp stopTime) {
+	public String addTaskLog(@RequestParam int taskId, int userId, int durationMinutes, Long startTime, Long stopTime) {
 		TaskLog newTaskLog = taskLogRepo.findByTaskId(taskId);
 		if (newTaskLog == null) {
 			newTaskLog = new TaskLog(taskId, userId, durationMinutes, startTime, stopTime);
@@ -166,23 +166,38 @@ public class TaskTrackerController {
 	}
 	
 	@RequestMapping("/start-task-time")
-	public String startTaskTime(@RequestParam int id, Timestamp startTime) {
+	public String startTaskTime(@RequestParam int id) {
 		Date date = new Date();
 		TaskLog currentTask = taskLogRepo.findById(id);
-		Timestamp currentTime=new Timestamp(date.getTime());
-		currentTask.startTime = currentTime;
+		currentTask.startTime = date.getTime();
 		taskLogRepo.save(currentTask);
 		return "redirect:/taskLog";
 	}
 
 	@RequestMapping("/stop-task-time")
 	public String stopTaskTime(@RequestParam int id) {
+		//log stop time
 		Date date = new Date();
 		TaskLog currentTask = taskLogRepo.findById(id);
-		Timestamp currentTime=new Timestamp(date.getTime());
-		currentTask.stopTime = currentTime;
+		currentTask.stopTime = date.getTime();
 		taskLogRepo.save(currentTask);
+		
+		//calculate new duration
+		
+		if((!(currentTask.getStopTime() == null)) && (!(currentTask.getStartTime() == null))) {
+			Long newDuration = calculateTime(currentTask.getStopTime(), currentTask.getStartTime());
+		}
+		
+//		currentTask.getDurationMinutes() = newDuration.
+		
+		taskLogRepo.save(currentTask);
+		
 		return "redirect:/taskLog";
+	}
+	
+	public Long calculateTime(Long stopTime, Long startTime) {
+		Long newTimeDuration = stopTime - startTime;
+		return newTimeDuration;
 	}
 
 }
