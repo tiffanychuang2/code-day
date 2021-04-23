@@ -16,13 +16,9 @@
                     <section>
                         <form method="POST">
                             <label>ID: <input type="text" name="id" /></label> 
-                                <!-- <input name="id" type="hidden" th:value="${task.id}"/> -->
                             <label>Description: <input type="text" name="description" /></label> 
-                                <!-- <input name="description" type="hidden" th:value="${task.description}"/> -->
                             <label>Project ID: <input type="text" name="projectId" /></label> 
-                                <!-- <input name="projectId" type="hidden" th:value="${task.projectId}"/> -->
-                            <!-- <button th:formaction="@{/add-task}">Add Task</button> -->
-                            <button>Add Task</button>
+                            <button th:formaction="@{/add-task}">Add Task</button>
                         </form>
                     </section>
 
@@ -43,7 +39,7 @@
                     		<th>project_id</th>
                     	</tr>
                         <tr th:each="task : ${task}">
-							<td><button>x</button></td>
+							<td><button th:formaction="@{/remove-task(id=${task.id})}">x</button></td>
 							<td th:text="${task.id}"></td>
 							<td th:text="${task.description}"></td>
                             <td>project id</td>
