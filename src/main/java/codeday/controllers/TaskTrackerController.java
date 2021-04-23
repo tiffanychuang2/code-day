@@ -70,7 +70,7 @@ public class TaskTrackerController {
 			newCustomer = new Customer(name);
 			customerRepo.save(newCustomer);
 		}
-		return "redirect:/customer?id=" + id;
+		return "redirect:/customer";
 	}
 	
 	@RequestMapping("/remove-customer")
@@ -85,7 +85,13 @@ public class TaskTrackerController {
 			customerRepo.deleteById(id);
 //		}
 		
-		return "redirect:/customer";
+//		return "redirect:/customer";
+//	}
+	
+//		Customer customerResult = customerRepo.findById(id);
+//		customerRepo.delete(customerResult);
+	
+	return "redirect:/customer";
 	}
 	
 	@RequestMapping("/project")

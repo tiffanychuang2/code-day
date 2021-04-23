@@ -10,6 +10,7 @@ import codeday.models.Customer;
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 	
 	Customer findByName(String name);
+	Customer findById(int id);
 	
 	List<Customer> findAll();
 	

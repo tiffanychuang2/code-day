@@ -15,10 +15,7 @@
 
                     <section>
                         <form method="POST">
-                            <label>ID: <input type="text" name="id" /></label> 
-                                <!-- <input name="id" type="hidden" th:value="${customer.id}"/> -->
                             <label>Name: <input type="text" name="name" /></label> 
-                                <!-- <input name="name" type="hidden" th:value="${customer.name}"/> -->
                             <button th:formaction="@{/add-customer}">Add Customer</button>
                         </form>
                     </section>
@@ -41,7 +38,7 @@
                     	</tr>
 						<tr th:each="customer : ${customer}">
                             <form method="Post">
-                                <td><button th:formaction="@{/remove-button(id=${customer.id})}">x</button></td>
+                                <td><button th:formaction="@{/remove-customer(id=${customer.id})}">x</button></td>
                             </form>
 							<td th:text="${customer.id}"></td>
 							<td th:text="${customer.name}"></td>
