@@ -8,10 +8,10 @@ import codeday.models.Task;
 
 public interface TaskRepository extends CrudRepository<Task, Integer> {
 	
-	List<Task> findAll();
+	Task findByDescription(String description);
 	
 	Task findById(int id);
 	
-	Task findByDescription(String description);
+	List<Task> findAll();
 
 }

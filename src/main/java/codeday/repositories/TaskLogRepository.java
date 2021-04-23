@@ -8,9 +8,10 @@ import codeday.models.TaskLog;
 
 public interface TaskLogRepository extends CrudRepository<TaskLog, Integer> {
 	
-	List<TaskLog> findAll();
+	TaskLog findByTaskId(int taskId);
 	
 	TaskLog findById(int id);
 	
-	TaskLog findByTaskId(int taskId);
+	List<TaskLog> findAll();
+
 }

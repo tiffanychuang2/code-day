@@ -12,10 +12,8 @@ public interface ProjectRepository extends CrudRepository<Project, Integer> {
 	
 	Project findByName(String name);
 	
-	List<Project> findAll();
-	
 	Project findById(int id);
 	
-//	Optional<Projects> findByCustomer(Customers customer);
-
+	List<Project> findAll();
+	
 }
