@@ -68,13 +68,13 @@ public class TaskTrackerPopulator implements CommandLineRunner {
 		Task taskWenus = new Task("Weekly Estimated Net Usage Statistics.", 6);
 		taskRepo.save(taskWenus);
 		
-		TaskLog one = new TaskLog(7, 18, 30);
+		TaskLog one = new TaskLog(7, 18, 30, null, null);
 		taskLogRepo.save(one);
-		TaskLog two = new TaskLog(8, 19, 45);
+		TaskLog two = new TaskLog(8, 19, 45, null, null);
 		taskLogRepo.save(two);
-		TaskLog three = new TaskLog(12, 20, 65);
+		TaskLog three = new TaskLog(12, 20, 65, null, null);
 		taskLogRepo.save(three);
-		TaskLog four = new TaskLog(13, 21, 80);
+		TaskLog four = new TaskLog(13, 21, 80, null, null);
 		taskLogRepo.save(four);
 		
 		

@@ -1,5 +1,7 @@
 package codeday.controllers;
 
+import java.sql.Timestamp;
+
 //import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -146,10 +148,10 @@ public class TaskTrackerController {
 	}
 	
 	@RequestMapping("/add-tasklog")
-	public String addTaskLog(@RequestParam int taskId, int userId, int durationMinutes) {
+	public String addTaskLog(@RequestParam int taskId, int userId, int durationMinutes, Timestamp startTime, Timestamp stopTime) {
 		TaskLog newTaskLog = taskLogRepo.findByTaskId(taskId);
 		if (newTaskLog == null) {
-			newTaskLog = new TaskLog(taskId, userId, durationMinutes);
+			newTaskLog = new TaskLog(taskId, userId, durationMinutes, startTime, stopTime);
 			taskLogRepo.save(newTaskLog);
 		}
 		return "redirect:/taskLog";
@@ -159,6 +161,18 @@ public class TaskTrackerController {
 	public String removeTaskLog(@RequestParam int id) {
 		taskLogRepo.deleteById(id);
 
+		return "redirect:/taskLog";
+	}
+	
+	@RequestMapping("/start-task-time")
+	public String startTaskTime(@RequestParam int id) {
+		
+		return "redirect:/taskLog";
+	}
+	
+	@RequestMapping("/stop-task-time")
+	public String stopTaskTime(@RequestParam int id) {
+		
 		return "redirect:/taskLog";
 	}
 

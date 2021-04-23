@@ -39,6 +39,9 @@
                     		<th>task_id</th>
                     		<th>user_id</th>
                     		<th>duration_minutes</th>
+                            <th>start_time</th>
+                            <th>stop_time</th>
+                            <th colspan="2">Timer</th>
                     	</tr>
                         <tr th:each="taskLog : ${taskLog}">
                             <form method="POST">
@@ -48,6 +51,14 @@
 							<td th:text="${taskLog.taskId}"></td>
 							<td th:text="${taskLog.userId}"></td>
 							<td th:text="${taskLog.durationMinutes}"></td>
+							<td th:text="${taskLog.startTime}"></td>
+							<td th:text="${taskLog.stopTime}"></td>
+                            <form method="POST">
+							    <td><button th:formaction="@{/start-task-time(id=${taskLog.id})}">Start</button></td>
+                            </form>
+                            <form method="POST">
+							    <td><button th:formaction="@{/stop-task-time(id=${taskLog.id})}">Stop</button></td>
+                            </form>
                         </tr>
                     
                     </table>
