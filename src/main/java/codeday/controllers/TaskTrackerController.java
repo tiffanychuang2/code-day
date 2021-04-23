@@ -165,6 +165,14 @@ public class TaskTrackerController {
 		return "redirect:/taskLog";
 	}
 	
+	@RequestMapping("/update-tasklog")
+	public String updateTaskLog(@RequestParam int id, int durationMinutes) {
+		TaskLog currentTask = taskLogRepo.findById(id);
+		currentTask.durationMinutes = durationMinutes;
+		taskLogRepo.save(currentTask);
+		return "redirect:/taskLog";
+	}
+	
 	@RequestMapping("/start-task-time")
 	public String startTaskTime(@RequestParam int id) {
 		Date date = new Date();
@@ -182,15 +190,13 @@ public class TaskTrackerController {
 		currentTask.stopTime = date.getTime();
 		taskLogRepo.save(currentTask);
 		
-		//calculate new duration
-		
-		if((!(currentTask.getStopTime() == null)) && (!(currentTask.getStartTime() == null))) {
+		//calculate new duration		
+		if((!(currentTask.getStartTime() == null))) {
 			Long newDuration = calculateTime(currentTask.getStopTime(), currentTask.getStartTime());
-		}
-		
-//		currentTask.getDurationMinutes() = newDuration.
-		
-		taskLogRepo.save(currentTask);
+			int currentDurationMinutes = currentTask.getDurationMinutes();
+			currentDurationMinutes = newDuration.intValue();
+			taskLogRepo.save(currentTask);
+		}	
 		
 		return "redirect:/taskLog";
 	}

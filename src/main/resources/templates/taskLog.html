@@ -15,9 +15,12 @@
 
                     <section>
                         <form method="POST">
-                            <label>ID: <input type="text" name="id" /></label> 
+                            <label>ID: <input type="text" name="id" /></label>
                             <label>Task ID: <input type="text" name="taskId" /></label> 
-                            <label>User ID: <input type="text" name="userId" /></label> 
+                            <label>User ID: <input type="text" name="userId" /></label>  
+                            <!-- <input name="id" type="hidden" th:text="${taskLog.id}" />
+                            <input name="id" type="hidden" th:text="${taskLog.taskId}" />
+                            <input name="id" type="hidden" th:text="${taskLog.userId}" /> -->
                             <label>Duration Minutes: <input type="text" name="durationMinutes" /></label> 
                             <button th:formaction="@{/add-tasklog}">Add Tasklog</button>
                         </form>
@@ -25,8 +28,15 @@
 
                       <br>
 
-                    <button>Edit</button>
                 </div>
+            </section>
+
+            <section>
+                <form method="POST">
+                    <label>ID: <input type="text" name="id" /></label>
+                    <label>Duration Minutes: <input type="text" name="durationMinutes" /></label>
+                    <button th:formaction="@{/update-tasklog}">Edit Duration</button>
+                </form>
             </section>
             
             <br>
@@ -34,7 +44,7 @@
                     
                     <table>
                     	<tr>
-                    		<th>Delete?</th>
+                    		<th>Delete</th>
                     		<th>id</th>
                     		<th>task_id</th>
                     		<th>user_id</th>

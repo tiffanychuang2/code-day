@@ -15,7 +15,7 @@ public class TaskLog {
 	private int id;
 	private int taskId;
 	private int userId;
-	private int durationMinutes;
+	public int durationMinutes;
 	public Long startTime;
 	public Long stopTime;
 			
