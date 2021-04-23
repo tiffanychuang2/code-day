@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Customers {
+public class Customer {
 	
 	@Id
 	@GeneratedValue
@@ -16,13 +16,13 @@ public class Customers {
 	private String name;
 	
 	@ManyToMany
-	private Set<Projects> customersForProjects;
+	private Set<Project> customersForProjects;
 	
-	protected Customers() {
+	protected Customer() {
 		
 	}
 	
-	public Customers(String name) {
+	public Customer(String name) {
 		this.name = name;
 	}
 	

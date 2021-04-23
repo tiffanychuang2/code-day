@@ -1,5 +1,7 @@
 package codeday.controllers;
 
+//import java.util.Optional;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -7,42 +9,42 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import codeday.models.Customers;
-import codeday.repositories.CustomersRepository;
-import codeday.repositories.ProjectsRepository;
-import codeday.repositories.TaskLogsRepository;
-import codeday.repositories.TasksRepository;
-import codeday.repositories.UsersRepository;
+import codeday.models.Customer;
+import codeday.repositories.CustomerRepository;
+import codeday.repositories.ProjectRepository;
+import codeday.repositories.TaskLogRepository;
+import codeday.repositories.TaskRepository;
+import codeday.repositories.UserRepository;
 
 @Controller
 public class TaskTrackerController {
 	
 	@Resource
-	CustomersRepository customersRepo;
+	CustomerRepository customerRepo;
 	
 	@Resource
-	ProjectsRepository projectsRepo;
+	ProjectRepository projectRepo;
 	
 	@Resource
-	TaskLogsRepository taskLogsRepo;
+	TaskLogRepository taskLogRepo;
 	
 	@Resource
-	TasksRepository tasksRepo;
+	TaskRepository taskRepo;
 	
 	@Resource
-	UsersRepository usersRepo;
+	UserRepository userRepo;
 	
-//	@RequestMapping("/login.html")
-//	public String login(@RequestParam(value = "error", required = false) String error,
-//			@RequestParam(value = "logout", required = false) String logout) {
-//		return "login";
-//	}
+	@RequestMapping("/login.html")
+	public String login(@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout) {
+		return "login";
+	}
 	
-//	@RequestMapping("/login-error")
-//	public String loginError(Model model) {
-//		model.addAttribute("loginError", true);
-//		return "login";
-//	}
+	@RequestMapping("/login-error")
+	public String loginError(Model model) {
+		model.addAttribute("loginError", true);
+		return "login";
+	}
 	
 	@RequestMapping("/")
 	public String defaultPage() {
@@ -55,63 +57,53 @@ public class TaskTrackerController {
 		return "index";
 	}
 	
-	@RequestMapping("/customers.html")
+	@RequestMapping("/customer")
 	public String getAllCustomers(Model model) {
-		model.addAttribute("customers", customersRepo.findAll());
-		return "customers";
-	}
+		model.addAttribute("customer", customerRepo.findAll());
+		return "customer";
+	}	
 	
-	// add a genre to a review and have it show on genres.html as well
-		@RequestMapping("/add-customer")
-		// public String addGenre(@RequestParam(value = "id") Long id, String genreName,
-		// String genre, String genreImage) {
-		public String addCustomer(@RequestParam int id, String name) {
-			Customers newCustomer = customersRepo.findByName(name);
-			if (newCustomer == null) {
-				// newGenre = new Genre(genreName, genre, genreImage);
-				newCustomer = new Customers(name);
-				customersRepo.save(newCustomer);
-			}
-//			MovieReview review = reviewRepo.findOne(id);
-//			Set<Genre> existingGenres = review.getMovieGenres();
-//			if (!existingGenres.contains(newGenre)) {
-//				review.addGenre(newGenre);
-//				reviewRepo.save(review);
-//			}
-			return "redirect:/customers?id=" + id;
+	@RequestMapping("/add-customer")
+	public String addCustomer(@RequestParam int id, String name) {
+		Customer newCustomer = customerRepo.findByName(name);
+		if (newCustomer == null) {
+			newCustomer = new Customer(name);
+			customerRepo.save(newCustomer);
 		}
+		return "redirect:/customer?id=" + id;
+	}
+	
+	@RequestMapping("/remove-customer")
+	public String removeCustomer(@RequestParam int id) {
+	
+//		Optional<Customers> customerResult = customerRepo.findById(customerId);
+//		Customers customer = customerResult.get();
 
-		// remove genre from review.html only
-//		@RequestMapping("/remove-genre")
-//		public String removeGenre(@RequestParam Long genreId, @RequestParam Long reviewId) {
-//			Genre deleteGenre = genreRepo.findOne(genreId);
-//			MovieReview review = reviewRepo.findOne(reviewId);
-//
-//			Set<Genre> existingGenres = review.getMovieGenres();
-//
-//			if (existingGenres.contains(deleteGenre)) {
-//				review.removeGenre(deleteGenre);
-//				reviewRepo.save(review);
-//			}
-//			return "redirect:/review?id=" + reviewId;
+//			Optional<Projects> customerProject = projectsRepo.findByCustomer(customer);
+
+//		if (customerResult.isPresent()) {
+			customerRepo.deleteById(id);
 //		}
+		
+		return "redirect:/customer";
+	}
 	
-	@RequestMapping("/projects.html")
+	@RequestMapping("/project")
 	public String getAllProjects(Model model) {
-		model.addAttribute("projects", projectsRepo.findAll());
-		return "projects";
+		model.addAttribute("project", projectRepo.findAll());
+		return "project";
 	}
 	
-	@RequestMapping("/tasks.html")
+	@RequestMapping("/task")
 	public String getAllTasks(Model model) {
-		model.addAttribute("tasks", tasksRepo.findAll());
-		return "tasks";
+		model.addAttribute("task", taskRepo.findAll());
+		return "task";
 	}
 	
-	@RequestMapping("/taskLogs.html")
+	@RequestMapping("/taskLog")
 	public String getDurationMinutes(Model model) {
-		model.addAttribute("taskLogs", taskLogsRepo.findAll());
-		return "taskLogs";
+		model.addAttribute("taskLog", taskLogRepo.findAll());
+		return "taskLog";
 	}
 
 }

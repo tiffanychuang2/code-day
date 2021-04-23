@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Tasks {
+public class Task {
 	
 	@Id
 	@GeneratedValue
@@ -17,16 +17,16 @@ public class Tasks {
 	private int projectId;
 	
 	@ManyToMany(mappedBy = "projectsForTasks")
-	private Set<Projects> tasksForProjects;
+	private Set<Project> tasksForProjects;
 	
 	@ManyToMany
-	private Set<TaskLogs> tasksForTasklogs;
+	private Set<TaskLog> tasksForTasklogs;
 	
-	protected Tasks() {
+	protected Task() {
 		
 	}
 	
-	public Tasks(String description, int projectId) {
+	public Task(String description, int projectId) {
 		this.description = description;
 		this.projectId = projectId;
 	}

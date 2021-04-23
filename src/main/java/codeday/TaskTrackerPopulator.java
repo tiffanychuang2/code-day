@@ -5,73 +5,73 @@ import javax.annotation.Resource;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import codeday.models.Customers;
-import codeday.models.Projects;
-import codeday.models.TaskLogs;
-import codeday.models.Tasks;
-import codeday.repositories.CustomersRepository;
-import codeday.repositories.ProjectsRepository;
-import codeday.repositories.TaskLogsRepository;
-import codeday.repositories.TasksRepository;
-import codeday.repositories.UsersRepository;
+import codeday.models.Customer;
+import codeday.models.Project;
+import codeday.models.TaskLog;
+import codeday.models.Task;
+import codeday.repositories.CustomerRepository;
+import codeday.repositories.ProjectRepository;
+import codeday.repositories.TaskLogRepository;
+import codeday.repositories.TaskRepository;
+import codeday.repositories.UserRepository;
 
 @Component
 public class TaskTrackerPopulator implements CommandLineRunner {
 	@Resource
-	CustomersRepository customersRepo;
+	CustomerRepository customerRepo;
 	
 	@Resource
-	ProjectsRepository projectsRepo;
+	ProjectRepository projectRepo;
 	
 	@Resource
-	TaskLogsRepository taskLogsRepo;
+	TaskLogRepository taskLogRepo;
 	
 	@Resource
-	TasksRepository tasksRepo;
+	TaskRepository taskRepo;
 	
 	@Resource
-	UsersRepository usersRepo;
+	UserRepository userRepo;
 	
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Customers chandlerBing = new Customers("Chandler Bing");
-		customersRepo.save(chandlerBing);
-		Customers lavenderGooms = new Customers("Lavender Gooms");
-		customersRepo.save(lavenderGooms);
-		Customers barneyStinson = new Customers("Barney Stinson");
-		customersRepo.save(barneyStinson);
+		Customer chandlerBing = new Customer("Chandler Bing");
+		customerRepo.save(chandlerBing);
+		Customer lavenderGooms = new Customer("Lavender Gooms");
+		customerRepo.save(lavenderGooms);
+		Customer barneyStinson = new Customer("Barney Stinson");
+		customerRepo.save(barneyStinson);
 		
-		Projects seize = new Projects(2, "S.E.I.Z.E.");
-		projectsRepo.save(seize);
-		Projects please = new Projects(3, "P.L.E.A.S.E.");
-		projectsRepo.save(please);
-		Projects wenus = new Projects(1, "W.E.N.U.S.");
-		projectsRepo.save(wenus);
+		Project seize = new Project(2, "S.E.I.Z.E.");
+		projectRepo.save(seize);
+		Project please = new Project(3, "P.L.E.A.S.E.");
+		projectRepo.save(please);
+		Project wenus = new Project(1, "W.E.N.U.S.");
+		projectRepo.save(wenus);
 		
-		Tasks taskSeize = new Tasks("S is for seize.", 4);
-		tasksRepo.save(taskSeize);
-		Tasks taskEggs = new Tasks("E is for eggs.", 4);
-		tasksRepo.save(taskEggs);
-		Tasks taskIdk = new Tasks("I is for I don't know.", 4);
-		tasksRepo.save(taskIdk);
-		Tasks taskZebra = new Tasks("Z is for zebra.", 4);
-		tasksRepo.save(taskZebra);
-		Tasks taskEighties = new Tasks("E is for eighties.", 4);
-		tasksRepo.save(taskEighties);
-		Tasks taskPlease = new Tasks("Provide Legal Exculpation and Sign Everything.", 5);
-		tasksRepo.save(taskPlease);
-		Tasks taskWenus = new Tasks("Weekly Estimated Net Usage Statistics.", 6);
-		tasksRepo.save(taskWenus);
+		Task taskSeize = new Task("S is for seize.", 4);
+		taskRepo.save(taskSeize);
+		Task taskEggs = new Task("E is for eggs.", 4);
+		taskRepo.save(taskEggs);
+		Task taskIdk = new Task("I is for I don't know.", 4);
+		taskRepo.save(taskIdk);
+		Task taskZebra = new Task("Z is for zebra.", 4);
+		taskRepo.save(taskZebra);
+		Task taskEighties = new Task("E is for eighties.", 4);
+		taskRepo.save(taskEighties);
+		Task taskPlease = new Task("Provide Legal Exculpation and Sign Everything.", 5);
+		taskRepo.save(taskPlease);
+		Task taskWenus = new Task("Weekly Estimated Net Usage Statistics.", 6);
+		taskRepo.save(taskWenus);
 		
-		TaskLogs one = new TaskLogs(7, 18, 30);
-		taskLogsRepo.save(one);
-		TaskLogs two = new TaskLogs(8, 19, 45);
-		taskLogsRepo.save(two);
-		TaskLogs three = new TaskLogs(12, 20, 65);
-		taskLogsRepo.save(three);
-		TaskLogs four = new TaskLogs(13, 21, 80);
-		taskLogsRepo.save(four);
+		TaskLog one = new TaskLog(7, 18, 30);
+		taskLogRepo.save(one);
+		TaskLog two = new TaskLog(8, 19, 45);
+		taskLogRepo.save(two);
+		TaskLog three = new TaskLog(12, 20, 65);
+		taskLogRepo.save(three);
+		TaskLog four = new TaskLog(13, 21, 80);
+		taskLogRepo.save(four);
 		
 		
 		

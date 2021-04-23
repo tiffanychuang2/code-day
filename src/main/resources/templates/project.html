@@ -12,8 +12,27 @@
             <section>
                 <div class="heading">
                     <h1>Projects</h1>
-                    <button>+</button>
+
+                    <section>
+                        <form method="POST">
+                            <label>ID: <input type="text" name="id" /></label> 
+                                <!-- <input name="id" type="hidden" th:value="${project.id}"/> -->
+                            <label>Customer ID: <input type="text" name="customerId" /></label> 
+                                <!-- <input name="customerId" type="hidden" th:value="${project.customerId}"/> -->
+                            <label>Name: <input type="text" name="name" /></label> 
+                                <!-- <input name="name" type="hidden" th:value="${project.name}"/> -->
+                            <!-- <button th:formaction="@{/add-project}">Add Project</button> -->
+                            <button>Add Project</button>
+                        </form>
+                    </section>
+
+                      <br>
+
                     <button>Edit</button>
+                </div>
+            </section>
+            
+            <br>
                     
                     <table>
                     	<tr>
@@ -22,7 +41,7 @@
                     		<th>customer_id</th>
                     		<th>name</th>
                     	</tr>
-                        <tr th:each="project : ${projects}">
+                        <tr th:each="project : ${project}">
 							<td><button>x</button></td>
 							<td th:text="${project.id}"></td>
 							<td th:text="${project.customerId}"></td>

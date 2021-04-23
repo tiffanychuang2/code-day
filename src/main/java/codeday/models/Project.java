@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 //import javax.persistence.Table;
 
 @Entity
-public class Projects {
+public class Project {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -20,16 +20,16 @@ public class Projects {
 	private String name;
 	
 	@ManyToMany(mappedBy = "customersForProjects")
-	private Set<Customers> projectsForCustomers;
+	private Set<Customer> projectsForCustomers;
 	
 	@ManyToMany
-	private Set<Tasks> projectsForTasks;
+	private Set<Task> projectsForTasks;
 	
-	protected Projects() {
+	protected Project() {
 		
 	}
 	
-	public Projects(int customerId, String name) {
+	public Project(int customerId, String name) {
 		this.customerId = customerId;
 		this.name = name;
 	}

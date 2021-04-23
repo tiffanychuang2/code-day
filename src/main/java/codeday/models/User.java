@@ -8,20 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Users {
+public class User {
 	
 	@Id
 	@GeneratedValue
 	private int id;
 	
 	@ManyToMany
-	private Set<TaskLogs> usersForTasklogs;
+	private Set<TaskLog> usersForTasklogs;
 	
-	protected Users() {
+	protected User() {
 		
 	}
 	
-	public Users(int id) {
+	public User(int id) {
 		this.id= id;
 	}
 
