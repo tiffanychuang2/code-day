@@ -41,7 +41,9 @@
                     		<th>duration_minutes</th>
                     	</tr>
                         <tr th:each="taskLog : ${taskLog}">
-							<td><button th:formaction="@{/remove-tasklog(id=${taskLog.id})}">x</button></td>
+                            <form method="POST">
+							    <td><button th:formaction="@{/remove-tasklog(id=${taskLog.id})}">x</button></td>
+                            </form>
 							<td th:text="${taskLog.id}"></td>
 							<td th:text="${taskLog.taskId}"></td>
 							<td th:text="${taskLog.userId}"></td>

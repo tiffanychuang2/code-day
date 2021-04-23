@@ -37,6 +37,7 @@ public class TaskTrackerController {
 	@Resource
 	UserRepository userRepo;
 	
+//login
 	@RequestMapping("/login")
 	public String login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
@@ -49,6 +50,7 @@ public class TaskTrackerController {
 		return "login";
 	}
 	
+//home
 	@RequestMapping("/")
 	public String defaultPage() {
 		return "index";
@@ -60,7 +62,7 @@ public class TaskTrackerController {
 		return "index";
 	}
 	
-	//customer
+//customer
 	@RequestMapping("/customer")
 	public String getAllCustomers(Model model) {
 		model.addAttribute("customer", customerRepo.findAll());
@@ -84,7 +86,7 @@ public class TaskTrackerController {
 		return "redirect:/customer";
 	}
 	
-	//project
+//project
 	@RequestMapping("/project")
 	public String getAllProjects(Model model) {
 		model.addAttribute("project", projectRepo.findAll());
@@ -108,7 +110,7 @@ public class TaskTrackerController {
 		return "redirect:/project";
 	}
 	
-	//task
+//task
 	@RequestMapping("/task")
 	public String getAllTasks(Model model) {
 		model.addAttribute("task", taskRepo.findAll());
@@ -132,6 +134,7 @@ public class TaskTrackerController {
 		return "redirect:/task";
 	}
 	
+//taskLog
 	@RequestMapping("/taskLog")
 	public String getDurationMinutes(Model model) {
 		model.addAttribute("taskLog", taskLogRepo.findAll());

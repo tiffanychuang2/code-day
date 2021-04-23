@@ -39,8 +39,10 @@
                     		<th>project_id</th>
                     	</tr>
                         <tr th:each="task : ${task}">
-							<td><button th:formaction="@{/remove-task(id=${task.id})}">x</button></td>
-							<td th:text="${task.id}"></td>
+							<form method="POST">
+                                <td><button th:formaction="@{/remove-task(id=${task.id})}">x</button></td>
+                            </form>
+                            <td th:text="${task.id}"></td>
 							<td th:text="${task.description}"></td>
                             <td>project id</td>
 							<!-- <td th:text="${task.projectId}"></td> -->

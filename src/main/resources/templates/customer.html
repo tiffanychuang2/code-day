@@ -38,7 +38,7 @@
                     		<th>name</th>
                     	</tr>
 						<tr th:each="customer : ${customer}">
-                            <form method="Post">
+                            <form method="POST">
                                 <td><button th:formaction="@{/remove-customer(id=${customer.id})}">x</button></td>
                             </form>
 							<td th:text="${customer.id}"></td>

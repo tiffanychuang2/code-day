@@ -38,7 +38,9 @@
                     		<th>name</th>
                     	</tr>
                         <tr th:each="project : ${project}">
-							<td><button th:formaction="@{/remove-project(id=${project.id})}">x</button></td>
+                            <form method="POST">
+							    <td><button th:formaction="@{/remove-project(id=${project.id})}">x</button></td>
+                            </form>
 							<td th:text="${project.id}"></td>
 							<td th:text="${project.customerId}"></td>
 							<td th:text="${project.name}"></td>
