@@ -193,8 +193,7 @@ public class TaskTrackerController {
 		//calculate new duration		
 		if((!(currentTask.getStartTime() == null))) {
 			Long newDuration = calculateTime(currentTask.getStopTime(), currentTask.getStartTime());
-			int currentDurationMinutes = currentTask.getDurationMinutes();
-			currentDurationMinutes = newDuration.intValue();
+			currentTask.durationMinutes = newDuration.intValue();
 			taskLogRepo.save(currentTask);
 		}	
 		
