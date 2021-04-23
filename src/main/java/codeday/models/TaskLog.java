@@ -17,16 +17,16 @@ public class TaskLog {
 	private int taskId;
 	private int userId;
 	private int durationMinutes;
-	private Timestamp startTime = null;
-	private Timestamp stopTime = null;
-	
+	public Timestamp startTime;
+	public Timestamp stopTime;
+			
 	@ManyToMany(mappedBy = "tasksForTasklogs")
 	private Set<Task> tasklogsForTasks;
 	
 	@ManyToMany(mappedBy = "usersForTasklogs")
 	private Set<User> tasklogsForUsers;
 	
-	protected TaskLog() {
+	public TaskLog() {
 		
 	}
 	
@@ -37,33 +37,6 @@ public class TaskLog {
 		this.startTime = startTime;
 		this.stopTime = stopTime;
 	}
-	
-//	@Id
-//	@GeneratedValue
-//	private int id;
-//	private int durationMinutes;
-//	
-//	@ManyToMany(mappedBy = "tasksForTasklogs")
-//	private Set<Tasks> tasklogsForTasks;
-//	
-//	@ManyToMany(mappedBy = "usersForTasklogs")
-//	private Set<Users> tasklogsForUsers;
-//	
-//	@ManyToOne
-//	private Tasks taskId;
-//	
-//	@ManyToOne
-//	private Users userId;
-//	
-//	protected TaskLogs() {
-//		
-//	}
-//	
-//	public TaskLogs(Tasks taskId, Users userId, int durationMinutes) {
-//		this.taskId = taskId;
-//		this.userId = userId;
-//		this.durationMinutes = durationMinutes;
-//	}
 	
 	public int getId() {
 		return id;
@@ -115,7 +88,7 @@ public class TaskLog {
 	
 	@Override
 	public String toString() {
-		return id + " " + taskId + " " + userId + " " + durationMinutes;
+		return id + " " + taskId + " " + userId + " " + durationMinutes +  " " + startTime + " " + stopTime;
 	}
 
 }

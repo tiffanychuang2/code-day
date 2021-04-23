@@ -1,6 +1,7 @@
 package codeday.controllers;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 //import java.util.Optional;
 
@@ -165,14 +166,22 @@ public class TaskTrackerController {
 	}
 	
 	@RequestMapping("/start-task-time")
-	public String startTaskTime(@RequestParam int id) {
-		
+	public String startTaskTime(@RequestParam int id, Timestamp startTime) {
+		Date date = new Date();
+		TaskLog currentTask = taskLogRepo.findById(id);
+		Timestamp currentTime=new Timestamp(date.getTime());
+		currentTask.startTime = currentTime;
+		taskLogRepo.save(currentTask);
 		return "redirect:/taskLog";
 	}
-	
+
 	@RequestMapping("/stop-task-time")
 	public String stopTaskTime(@RequestParam int id) {
-		
+		Date date = new Date();
+		TaskLog currentTask = taskLogRepo.findById(id);
+		Timestamp currentTime=new Timestamp(date.getTime());
+		currentTask.stopTime = currentTime;
+		taskLogRepo.save(currentTask);
 		return "redirect:/taskLog";
 	}
 
