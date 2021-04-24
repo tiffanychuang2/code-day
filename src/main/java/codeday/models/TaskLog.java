@@ -97,7 +97,7 @@ public class TaskLog {
 	
 	@Override
 	public String toString() {
-		return taskId + " " + userId + " " + durationMinutes +  " " + startTime + " " + stopTime;
+		return durationMinutes;
 	}
 
 }

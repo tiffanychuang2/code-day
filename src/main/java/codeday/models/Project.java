@@ -63,7 +63,7 @@ public class Project {
 	
 	@Override
 	public String toString() {
-		return name + " " + customerId;
+		return name;
 	}
 
 }
