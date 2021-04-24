@@ -12,7 +12,9 @@ public class User {
 	
 	@Id
 	@GeneratedValue
-	private int id;
+	private int userId;
+	private String username;
+	private String password;
 	
 	@ManyToMany
 	private Set<TaskLog> usersForTasklogs;
@@ -21,16 +23,33 @@ public class User {
 		
 	}
 	
-	public User(int id) {
-		this.id= id;
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
 	}
 
-	public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public String getUsername() {
+		return username;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

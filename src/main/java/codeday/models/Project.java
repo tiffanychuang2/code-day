@@ -5,19 +5,22 @@ import java.util.Set;
 //import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 //import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Project {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	private int customerId;
+	@GeneratedValue
+	private int projectId;
+//	private int customerId;
 	private String name;
+	
+	@ManyToOne
+	Customer customerId;
 	
 	@ManyToMany(mappedBy = "customersForProjects")
 	private Set<Customer> projectsForCustomers;
@@ -29,16 +32,16 @@ public class Project {
 		
 	}
 	
-	public Project(int customerId, String name) {
+	public Project(Customer customerId, String name) {
 		this.customerId = customerId;
 		this.name = name;
 	}
 	
-	public int getId() {
-		return id;
+	public int getProjectId() {
+		return projectId;
 	}
 	
-	public int getCustomerId() {
+	public Customer getCustomerId() {
 		return customerId;
 	}
 	
@@ -46,11 +49,11 @@ public class Project {
 		return name;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
 	}
 	
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(Customer customerId) {
 		this.customerId = customerId;
 	}
 	
@@ -60,7 +63,7 @@ public class Project {
 	
 	@Override
 	public String toString() {
-		return customerId + " " + name;
+		return name + " " + customerId;
 	}
 
 }

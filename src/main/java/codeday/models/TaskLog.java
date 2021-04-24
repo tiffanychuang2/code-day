@@ -6,19 +6,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class TaskLog {
 	
 	@Id
 	@GeneratedValue
-	private int id;
-	private int taskId;
-	private int userId;
+	private int taskLogId;
+//	private int taskId;
+//	private int userId;
 	public int durationMinutes;
 	public Long startTime;
 	public Long stopTime;
 			
+	@ManyToOne
+	Task taskId;
+	
+	@ManyToOne
+	User userId;
+	
 	@ManyToMany(mappedBy = "tasksForTasklogs")
 	private Set<Task> tasklogsForTasks;
 	
@@ -29,7 +36,7 @@ public class TaskLog {
 		
 	}
 	
-	public TaskLog(int taskId, int userId, int durationMinutes, Long startTime, Long stopTime) {
+	public TaskLog(Task taskId, User userId, int durationMinutes, Long startTime, Long stopTime) {
 		this.taskId = taskId;
 		this.userId = userId;
 		this.durationMinutes = durationMinutes;
@@ -37,15 +44,15 @@ public class TaskLog {
 		this.stopTime = stopTime;
 	}
 	
-	public int getId() {
-		return id;
+	public int getTaskLogId() {
+		return taskLogId;
 	}
 	
-	public int getTaskId() {
+	public Task getTaskId() {
 		return taskId;
 	}
 	
-	public int getUserId() {
+	public User getUserId() {
 		return userId;
 	}
 	
@@ -61,21 +68,24 @@ public class TaskLog {
 		return stopTime;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setTaskLogId(int taskLogId) {
+		this.taskLogId = taskLogId;
 	}
 	
-	public void setTaskId(int taskId) {
+	public void setTaskId(Task taskId) {
 		this.taskId = taskId;
 	}
 	
-	public void setUserId(int userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 	
-	public void setDurationMinutes(int durationMinutes) {
-		this.durationMinutes = durationMinutes;
-	}
+//	public void setDurationMinutes(Task taskId, User userId, long durationMinutes) {
+//		this.taskId = taskId;
+//		this.userId = userId;
+//		this.durationMinutes = durationMinutes;
+//		
+//	}
 	
 	public void setStartTime(Long startTime) {
 		this.startTime = startTime;
@@ -87,7 +97,7 @@ public class TaskLog {
 	
 	@Override
 	public String toString() {
-		return id + " " + taskId + " " + userId + " " + durationMinutes +  " " + startTime + " " + stopTime;
+		return taskId + " " + userId + " " + durationMinutes +  " " + startTime + " " + stopTime;
 	}
 
 }

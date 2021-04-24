@@ -6,15 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Task {
 	
 	@Id
 	@GeneratedValue
-	private int id;
+	private int taskId;
 	private String description;
-	private int projectId;
+//	private int projectId;
+	
+	@ManyToOne
+	Project projectId;
 	
 	@ManyToMany(mappedBy = "projectsForTasks")
 	private Set<Project> tasksForProjects;
@@ -26,32 +30,32 @@ public class Task {
 		
 	}
 	
-	public Task(String description, int projectId) {
+	public Task(String description, Project projectId) {
 		this.description = description;
 		this.projectId = projectId;
 	}
 	
-	public int getId() {
-		return id;
+	public int getTaskId() {
+		return taskId;
 	}
 	
 	public String getDescription() {
 		return description;
 	}
 	
-	public int getprojectId() {
+	public Project getprojectId() {
 		return projectId;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setTaskId(int taskId) {
+		this.taskId = taskId;
 	}
 	
 	public void setDescription(String description) {
 		this.description = description;
 	}
 	
-	public void setProjectId(int projectId) {
+	public void setProjectId(Project projectId) {
 		this.projectId = projectId;
 	}
 	

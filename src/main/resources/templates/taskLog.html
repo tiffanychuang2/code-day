@@ -15,7 +15,7 @@
 
                     <section>
                         <form method="POST">
-                            <label>ID: <input type="text" name="id" /></label>
+                            <label>ID: <input type="text" name="taskLogId" /></label>
                             <label>Task ID: <input type="text" name="taskId" /></label> 
                             <label>User ID: <input type="text" name="userId" /></label>  
                             <!-- <input name="id" type="hidden" th:text="${taskLog.id}" />
@@ -33,7 +33,7 @@
 
             <section>
                 <form method="POST">
-                    <label>ID: <input type="text" name="id" /></label>
+                    <label>ID: <input type="text" name="taskLogId" /></label>
                     <label>Duration Minutes: <input type="text" name="durationMinutes" /></label>
                     <button th:formaction="@{/update-tasklog}">Edit Duration</button>
                 </form>
@@ -55,19 +55,19 @@
                     	</tr>
                         <tr th:each="taskLog : ${taskLog}">
                             <form method="POST">
-							    <td><button th:formaction="@{/remove-tasklog(id=${taskLog.id})}">x</button></td>
+							    <td><button th:formaction="@{/remove-tasklog(id=${taskLog.taskLogId})}">x</button></td>
                             </form>
-							<td th:text="${taskLog.id}"></td>
+							<td th:text="${taskLog.taskLogId}"></td>
 							<td th:text="${taskLog.taskId}"></td>
 							<td th:text="${taskLog.userId}"></td>
 							<td th:text="${taskLog.durationMinutes}"></td>
 							<td th:text="${taskLog.startTime}"></td>
 							<td th:text="${taskLog.stopTime}"></td>
                             <form method="POST">
-							    <td><button th:formaction="@{/start-task-time(id=${taskLog.id})}">Start</button></td>
+							    <td><button th:formaction="@{/start-task-time(id=${taskLog.taskLogId})}">Start</button></td>
                             </form>
                             <form method="POST">
-							    <td><button th:formaction="@{/stop-task-time(id=${taskLog.id})}">Stop</button></td>
+							    <td><button th:formaction="@{/stop-task-time(id=${taskLog.taskLogId})}">Stop</button></td>
                             </form>
                         </tr>
                     

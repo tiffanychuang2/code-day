@@ -12,7 +12,7 @@ public class Customer {
 	
 	@Id
 	@GeneratedValue
-	private int id;
+	private int customerId;
 	private String name;
 	
 	@ManyToMany
@@ -26,16 +26,16 @@ public class Customer {
 		this.name = name;
 	}
 	
-	public int getId() {
-		return id;
+	public int getCustomerId() {
+		return customerId;
 	}
 	
 	public String getName() {
 		return name;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 	
 	public void setName(String name) {
@@ -44,14 +44,7 @@ public class Customer {
 	
 	@Override
 	public String toString() {
-		return id + " " + name;
+		return name;
 	}
-
-//	@Override
-//	  public String toString() {
-//	    return String.format(
-//	        "Customer[id=%d, name='%s']",
-//	        id, name);
-//	  }
 
 }

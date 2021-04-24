@@ -15,7 +15,7 @@
 
                     <section>
                         <form method="POST">
-                            <label>ID: <input type="text" name="id" /></label> 
+                            <label>ID: <input type="text" name="projectId" /></label> 
                             <label>Customer ID: <input type="text" name="customerId" /></label> 
                             <label>Name: <input type="text" name="name" /></label> 
                             <button th:formaction="@{/add-project}">Add Project</button>
@@ -39,10 +39,10 @@
                     	</tr>
                         <tr th:each="project : ${project}">
                             <form method="POST">
-							    <td><button th:formaction="@{/remove-project(id=${project.id})}">x</button></td>
+							    <td><button th:formaction="@{/remove-project(id=${project.projectId})}">x</button></td>
                             </form>
-							<td th:text="${project.id}"></td>
-							<td th:text="${project.customerId}"></td>
+							<td th:text="${project.projectId}"></td>
+							<td th:text="${projet.customerId}"></td>
 							<td th:text="${project.name}"></td>
                         </tr>
                     

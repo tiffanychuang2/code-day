@@ -1,6 +1,5 @@
 package codeday.controllers;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 //import java.util.Optional;
@@ -16,6 +15,7 @@ import codeday.models.Customer;
 import codeday.models.Project;
 import codeday.models.Task;
 import codeday.models.TaskLog;
+import codeday.models.User;
 import codeday.repositories.CustomerRepository;
 import codeday.repositories.ProjectRepository;
 import codeday.repositories.SecureUserRepository;
@@ -87,8 +87,8 @@ public class TaskTrackerController {
 	}
 	
 	@RequestMapping("/remove-customer")
-	public String removeCustomer(@RequestParam int id) {
-		customerRepo.deleteById(id);
+	public String removeCustomer(@RequestParam int customerId) {
+		customerRepo.deleteById(customerId);
 
 		return "redirect:/customer";
 	}
@@ -101,7 +101,7 @@ public class TaskTrackerController {
 	}
 	
 	@RequestMapping("/add-project")
-	public String addProject(@RequestParam int customerId, String name) {
+	public String addProject(@RequestParam Customer customerId, String name) {
 		Project newProject = projectRepo.findByName(name);
 		if (newProject == null) {
 			newProject = new Project(customerId, name);
@@ -111,8 +111,8 @@ public class TaskTrackerController {
 	}
 	
 	@RequestMapping("/remove-project")
-	public String removeProject(@RequestParam int id) {
-		projectRepo.deleteById(id);
+	public String removeProject(@RequestParam int projectId) {
+		projectRepo.deleteById(projectId);
 
 		return "redirect:/project";
 	}
@@ -125,7 +125,7 @@ public class TaskTrackerController {
 	}
 	
 	@RequestMapping("/add-task")
-	public String addTask(@RequestParam String description, int projectId) {
+	public String addTask(@RequestParam String description, Project projectId) {
 		Task newTask = taskRepo.findByDescription(description);
 		if (newTask == null) {
 			newTask = new Task(description, projectId);
@@ -135,8 +135,8 @@ public class TaskTrackerController {
 	}
 	
 	@RequestMapping("/remove-task")
-	public String removeTask(@RequestParam int id) {
-		taskRepo.deleteById(id);
+	public String removeTask(@RequestParam int taskId) {
+		taskRepo.deleteById(taskId);
 
 		return "redirect:/task";
 	}
@@ -149,8 +149,8 @@ public class TaskTrackerController {
 	}
 	
 	@RequestMapping("/add-tasklog")
-	public String addTaskLog(@RequestParam int taskId, int userId, int durationMinutes, Long startTime, Long stopTime) {
-		TaskLog newTaskLog = taskLogRepo.findByTaskId(taskId);
+	public String addTaskLog(@RequestParam int taskLogId, Task taskId, User userId, int durationMinutes, Long startTime, Long stopTime) {
+		TaskLog newTaskLog = taskLogRepo.findById(taskLogId);
 		if (newTaskLog == null) {
 			newTaskLog = new TaskLog(taskId, userId, durationMinutes, startTime, stopTime);
 			taskLogRepo.save(newTaskLog);
@@ -159,34 +159,34 @@ public class TaskTrackerController {
 	}
 	
 	@RequestMapping("/remove-tasklog")
-	public String removeTaskLog(@RequestParam int id) {
-		taskLogRepo.deleteById(id);
+	public String removeTaskLog(@RequestParam int taskLogId) {
+		taskLogRepo.deleteById(taskLogId);
 
 		return "redirect:/taskLog";
 	}
 	
 	@RequestMapping("/update-tasklog")
-	public String updateTaskLog(@RequestParam int id, int durationMinutes) {
-		TaskLog currentTask = taskLogRepo.findById(id);
+	public String updateTaskLog(@RequestParam int taskLogId, int durationMinutes) {
+		TaskLog currentTask = taskLogRepo.findById(taskLogId);
 		currentTask.durationMinutes = durationMinutes;
 		taskLogRepo.save(currentTask);
 		return "redirect:/taskLog";
 	}
 	
 	@RequestMapping("/start-task-time")
-	public String startTaskTime(@RequestParam int id) {
+	public String startTaskTime(@RequestParam int taskLogId) {
 		Date date = new Date();
-		TaskLog currentTask = taskLogRepo.findById(id);
+		TaskLog currentTask = taskLogRepo.findById(taskLogId);
 		currentTask.startTime = date.getTime();
 		taskLogRepo.save(currentTask);
 		return "redirect:/taskLog";
 	}
 
 	@RequestMapping("/stop-task-time")
-	public String stopTaskTime(@RequestParam int id) {
+	public String stopTaskTime(@RequestParam int taskLogId) {
 		//log stop time
 		Date date = new Date();
-		TaskLog currentTask = taskLogRepo.findById(id);
+		TaskLog currentTask = taskLogRepo.findById(taskLogId);
 		currentTask.stopTime = date.getTime();
 		taskLogRepo.save(currentTask);
 		
